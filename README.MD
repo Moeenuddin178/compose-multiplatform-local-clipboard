@@ -1,29 +1,61 @@
-# local clipboard
+## compose-multiplatform-local-clipboard
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration  
+Cross‑platform clipboard sharing app built with Kotlin Compose Multiplatform. One codebase, multiple targets: Android, iOS, Desktop (JVM), and Web (JS/Wasm). Sync, view history, and manage devices on your local network.
 
-To build the application bundle:  
- - run `./gradlew :androidApp:assembleDebug`  
- - find `.apk` file in `androidApp/build/outputs/apk/debug/androidApp-debug.apk`  
+### Features
+- Clipboard sync across devices on the same network
+- Clipboard history with sections and search
+- Device discovery and approval workflow
+- Light/Dark theme, responsive UI
+- Multiplatform persistence via SQLDelight
 
-### Desktop
-Run the desktop application: `./gradlew :desktopApp:run`  
-Run the desktop **hot reload** application: `./gradlew :desktopApp:hotRun --auto`  
+### Tech Stack
+- Kotlin Multiplatform + Compose Multiplatform (Material 3)
+- Ktor (client/server), Multicast discovery
+- SQLDelight for storage
+- Coil 3 for images
 
-### iOS
-To run the application on iPhone device/simulator:  
- - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration  
- - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio  
+### Modules
+- `sharedUI/` – shared UI, domain, data, networking
+- `androidApp/` – Android entry
+- `iosApp/` – iOS entry (Xcode project)
+- `desktopApp/` – Desktop entry
+- `webApp/` – Web entry (JS + Wasm)
 
-### Web Distribution
-Build web distribution: `./gradlew :webApp:composeCompatibilityBrowserDistribution`  
-Deploy a dir `webApp/build/dist/composeWebCompatibility/productionExecutable` to a web server  
+### Getting Started
+Prereqs: JDK 17+, Android Studio (latest), Xcode (for iOS), Node (optional for web). Gradle wrapper included.
 
-### JS Browser
-Run the browser application: `./gradlew :webApp:jsBrowserDevelopmentRun`  
+#### Android
+- Run from Android Studio or: `./gradlew :androidApp:installDebug`
+- APK: `androidApp/build/outputs/apk/debug/androidApp-debug.apk`
 
-### Wasm Browser
-Run the browser application: `./gradlew :webApp:wasmJsBrowserDevelopmentRun`  
+#### Desktop (JVM)
+- Run: `./gradlew :desktopApp:run`
+- Hot reload: `./gradlew :desktopApp:hotRun --auto`
+
+#### iOS
+- Open `iosApp/iosApp.xcodeproj` in Xcode and run
+- Or command line to device (after signing):
+  - `xcodebuild -scheme iosApp -destination 'id=<DEVICE_ID>' -configuration Debug build install`
+  - Launch: `xcrun devicectl device process launch --device <DEVICE_ID> com.kmpstarter.KmpStarter`
+
+Notes: Ensure code signing is configured in Xcode (Automatically manage signing). On iOS 26 SDK, avoid Swift bindings; use platform APIs in `sharedUI/src/iosMain`.
+
+#### Web (JS/Wasm)
+- JS dev run: `./gradlew :webApp:jsBrowserDevelopmentRun`
+- Wasm dev run: `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
+- Production distribution: `./gradlew :webApp:composeCompatibilityBrowserDistribution`
+- Deploy folder: `webApp/build/dist/composeWebCompatibility/productionExecutable`
+
+### Project Scripts
+- `run-linux-mac.sh` – quick desktop run
+- `test_app_status.sh` – status helper
+
+### Build/Run Tips
+- Clean: `./gradlew clean`
+- If Gradle cache issues: delete `.gradle/` and `**/build/`
+- If iOS build DB locks: `killall xcodebuild`
+
+### License
+MIT (update if needed)
 
