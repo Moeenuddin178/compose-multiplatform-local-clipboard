@@ -23,14 +23,6 @@ kotlin {
 
     jvm()
 
-    js { 
-        browser()
-    }
-    
-    wasmJs { 
-        browser()
-    }
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -86,13 +78,7 @@ kotlin {
             implementation(libs.ktor.client.darwin)
         }
 
-        jsMain.dependencies {
-            implementation(libs.ktor.client.js)
-        }
-        
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.client.js)
-        }
+        // Web targets removed
 
     }
 

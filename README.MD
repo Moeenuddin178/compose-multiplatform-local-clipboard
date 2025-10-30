@@ -1,9 +1,9 @@
 ## compose-multiplatform-local-clipboard
 
 ### About
-compose‑multiplatform‑local‑clipboard lets you copy on one device and paste on another, privately over your local network. It uses Kotlin Multiplatform and Compose to share UI and logic across Android, iOS, Desktop, and Web, with a small local server/client layer for discovery and sync. No cloud required; your data stays on your devices.
+compose‑multiplatform‑local‑clipboard lets you copy on one device and paste on another, privately over your local network. It uses Kotlin Multiplatform and Compose to share UI and logic across Android, iOS, and Desktop, with a small local server/client layer for discovery and sync. No cloud required; your data stays on your devices.
 
-Cross‑platform clipboard sharing app built with Kotlin Compose Multiplatform. One codebase, multiple targets: Android, iOS, Desktop (JVM), and Web (JS/Wasm). Sync, view history, and manage devices on your local network.
+Cross‑platform clipboard sharing app built with Kotlin Compose Multiplatform. One codebase, multiple targets: Android, iOS, Desktop (JVM). Sync, view history, and manage devices on your local network.
 
 ### Features
 - Clipboard sync across devices on the same network
@@ -23,10 +23,10 @@ Cross‑platform clipboard sharing app built with Kotlin Compose Multiplatform. 
 - `androidApp/` – Android entry
 - `iosApp/` – iOS entry (Xcode project)
 - `desktopApp/` – Desktop entry
-- `webApp/` – Web entry (JS + Wasm)
+Web target has been removed.
 
 ### Getting Started
-Prereqs: JDK 17+, Android Studio (latest), Xcode (for iOS), Node (optional for web). Gradle wrapper included.
+Prereqs: JDK 17+, Android Studio (latest), Xcode (for iOS). Gradle wrapper included.
 
 #### Android
 - Run from Android Studio or: `./gradlew :androidApp:installDebug`
@@ -44,11 +44,8 @@ Prereqs: JDK 17+, Android Studio (latest), Xcode (for iOS), Node (optional for w
 
 Notes: Ensure code signing is configured in Xcode (Automatically manage signing). On iOS 26 SDK, avoid Swift bindings; use platform APIs in `sharedUI/src/iosMain`.
 
-#### Web (JS/Wasm)
-- JS dev run: `./gradlew :webApp:jsBrowserDevelopmentRun`
-- Wasm dev run: `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
-- Production distribution: `./gradlew :webApp:composeCompatibilityBrowserDistribution`
-- Deploy folder: `webApp/build/dist/composeWebCompatibility/productionExecutable`
+#### Web (removed)
+The browser target (JS/Wasm) is no longer supported in this repository.
 
 ### Project Scripts
 - `run-linux-mac.sh` – quick desktop run

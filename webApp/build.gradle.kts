@@ -17,8 +17,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // Temporarily removed :sharedUI dependency to fix build
-            // implementation(project(":sharedUI"))
+            implementation(project(":sharedUI"))
             implementation(compose.ui)
         }
     }

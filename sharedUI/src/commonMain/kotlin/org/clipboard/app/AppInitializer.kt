@@ -259,8 +259,8 @@ class AppInitializer {
     fun cleanup() {
         println("🧹 [AppInitializer] Cleaning up all services...")
         try {
-            // Stop server in blocking coroutine
-            kotlinx.coroutines.runBlocking {
+            // Stop server without blocking the thread (works on Wasm/JS too)
+            kotlinx.coroutines.GlobalScope.launch {
                 try {
                     server.stop()
                 } catch (e: Exception) {
