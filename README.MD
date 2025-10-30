@@ -1,5 +1,8 @@
 ## compose-multiplatform-local-clipboard
 
+### About
+compose‑multiplatform‑local‑clipboard lets you copy on one device and paste on another, privately over your local network. It uses Kotlin Multiplatform and Compose to share UI and logic across Android, iOS, Desktop, and Web, with a small local server/client layer for discovery and sync. No cloud required; your data stays on your devices.
+
 Cross‑platform clipboard sharing app built with Kotlin Compose Multiplatform. One codebase, multiple targets: Android, iOS, Desktop (JVM), and Web (JS/Wasm). Sync, view history, and manage devices on your local network.
 
 ### Features
